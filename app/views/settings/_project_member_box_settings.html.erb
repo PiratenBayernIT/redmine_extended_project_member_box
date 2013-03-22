@@ -1,0 +1,19 @@
+<fieldset>
+  <%= content_tag(:legend, l(:project_member_box_general_settings)) %>
+
+  <%= content_tag(:p, l(:project_member_box_settings_description)) %>
+    <p>
+        <%= content_tag(:label, l(:project_member_box_hide_roles)) %>
+        <%= select_tag 'settings[hide_role_ids]', 
+            options_from_collection_for_select(Role.all, :id, :name, @settings['hide_role_ids']),
+            { :multiple => true }
+        %>
+    </p>
+    <p>
+        <%= content_tag(:label, l(:project_member_box_count_roles)) %>
+        <%= select_tag 'settings[count_role_ids]', 
+            options_from_collection_for_select(Role.all, :id, :name, @settings['count_role_ids']),
+            { :multiple => true }
+        %>
+    </p>
+</fieldset>

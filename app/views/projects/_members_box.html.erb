@@ -2,7 +2,8 @@
   <div class="members box">
     <h3><%=l(:label_member_plural)%></h3>
     <p><% @users_by_role.keys.sort.each do |role| %>
-    <% if ["Beobachter", "Reporter"].include?(role.name) %>
+    <% if Setting.plugin_redmine_extended_project_member_box[:hide_role_ids].include?(role.id.to_s) %>
+	<% elsif Setting.plugin_redmine_extended_project_member_box[:count_role_ids].include?(role.id.to_s) %>
     <%=h role %>: <%= @users_by_role[role].size.to_s.html_safe %><br />
     <% else %>
 	<%=h role %>: <%= @users_by_role[role].sort.collect{|u| link_to_user u}.join(", ").html_safe %><br />
